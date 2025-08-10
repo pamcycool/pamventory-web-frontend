@@ -8,7 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Card, CardContent } from "@/components/ui/card"
 import { Download, FileSpreadsheet, FileText, X, Loader2 } from "lucide-react"
 import { toast } from "sonner"
-import { exportData, type ExportFormat, type ExportData } from "@/lib/export-utils"
+import { exportData as exportDataFunction, type ExportFormat, type ExportData } from "@/lib/export-utils"
 
 interface ExportModalProps {
   open: boolean
@@ -54,7 +54,7 @@ export function ExportModal({ open, onOpenChange, exportData, title = "Export Da
     setIsExporting(true)
     
     try {
-      exportData(exportData, selectedFormat)
+      exportDataFunction(exportData, selectedFormat)
       
       const formatLabel = formatOptions.find(f => f.value === selectedFormat)?.label || selectedFormat
       toast.success(`Successfully exported ${exportData.data.length} records as ${formatLabel}`)
