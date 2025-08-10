@@ -7,6 +7,8 @@ import { Search, Plus, Download, AlertTriangle, CreditCard, User } from "lucide-
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { AddCustomerModal } from "@/components/modals/AddCustomerModal"
+import { ExportModal } from "@/components/modals/ExportModal"
+import { creditColumns } from "@/lib/export-utils"
 import { useCustomers, useCustomerStatistics, useCreateCustomer } from "@/hooks/use-credit-api"
 import { format } from "date-fns"
 import { toast } from "sonner"
@@ -14,6 +16,7 @@ import { toast } from "sonner"
 export default function CreditBookPage() {
   const router = useRouter()
   const [open, setOpen] = useState(false)
+  const [exportModalOpen, setExportModalOpen] = useState(false)
   const [searchTerm, setSearchTerm] = useState("")
   const [currentPage, setCurrentPage] = useState(1)
 
@@ -132,7 +135,7 @@ export default function CreditBookPage() {
               <Plus className="w-4 h-4 mr-2" />
               Add customer
             </Button>
-            <Button variant="outline" className="rounded-full">
+            <Button variant="outline" className="rounded-full" onClick={() => setExportModalOpen(true)}>
               <Download className="w-4 h-4 mr-2" />
               Export
             </Button>
@@ -193,6 +196,16 @@ export default function CreditBookPage() {
         open={open} 
         onOpenChange={setOpen} 
         onSubmit={handleCreateCustomer}
+      />
+      <ExportModal
+        open={exportModalOpen}
+        onOpenChange={setExportModalOpen}
+        exportData={{
+          filename: `credit-book-export-${new Date().toISOString().split('T')[0]}`,
+          data: customers as unknown as Array<Record<string, unknown>>,
+          columns: creditColumns
+        }}
+        title="Export Credit Book Data"
       />
     </div>
   )

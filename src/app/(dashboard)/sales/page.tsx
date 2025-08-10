@@ -8,6 +8,8 @@ import { Search, Plus, Download, Filter, ArrowUpDown, ChevronLeft, ChevronRight,
 import { useState, useEffect } from "react"
 import { RecordSalesModal } from "@/components/modals/RecordSales"
 import { DeleteSaleModal } from "@/components/modals/DeleteSaleModal"
+import { ExportModal } from "@/components/modals/ExportModal"
+import { salesColumns } from "@/lib/export-utils"
 import { useSales, useSalesFilterOptions, useDeleteSale, type SalesFilters, type Sale, type FilterOptions } from "@/hooks/use-sales-api"
 import { toast } from "sonner"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
@@ -17,6 +19,7 @@ import { format } from "date-fns"
 export default function SalesPage() {
   const [open, setOpen] = useState(false)
   const [deleteModalOpen, setDeleteModalOpen] = useState(false)
+  const [exportModalOpen, setExportModalOpen] = useState(false)
   const [selectedSale, setSelectedSale] = useState<Sale | null>(null)
   const [showFilters, setShowFilters] = useState(false)
   const [searchTerm, setSearchTerm] = useState("")
@@ -124,8 +127,7 @@ export default function SalesPage() {
   }
 
   const exportSales = () => {
-    // TODO: Implement export functionality
-    toast.info("Export functionality coming soon!")
+    setExportModalOpen(true)
   }
 
   if (error) {
@@ -420,6 +422,16 @@ export default function SalesPage() {
         sale={selectedSale}
         onConfirm={confirmDeleteSale}
         isDeleting={deleteSale.isPending}
+      />
+      <ExportModal
+        open={exportModalOpen}
+        onOpenChange={setExportModalOpen}
+        exportData={{
+          filename: `sales-export-${new Date().toISOString().split('T')[0]}`,
+          data: sales,
+          columns: salesColumns
+        }}
+        title="Export Sales Data"
       />
     </div>
   )

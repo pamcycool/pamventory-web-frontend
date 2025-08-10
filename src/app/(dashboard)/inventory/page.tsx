@@ -11,6 +11,8 @@ import { AddProductModal } from "@/components/modals/AddProductModal"
 import { EditProductModal } from "@/components/modals/EditProductModal"
 import { DeleteConfirmationModal } from "@/components/modals/DeleteConfirmationModal"
 import { ProductDetailsModal } from "@/components/modals/ProductDetailsModal"
+import { ExportModal } from "@/components/modals/ExportModal"
+import { inventoryColumns } from "@/lib/export-utils"
 import { useProducts, useDeleteProduct, type Product, type ProductFilters } from "@/hooks/use-inventory-api"
 import { toast } from "sonner"
 import { RequireSubscription } from "@/components/subscription/require-subscription"
@@ -20,6 +22,7 @@ export default function InventoryPage() {
   const [editModalOpen, setEditModalOpen] = useState(false)
   const [deleteModalOpen, setDeleteModalOpen] = useState(false)
   const [detailsModalOpen, setDetailsModalOpen] = useState(false)
+  const [exportModalOpen, setExportModalOpen] = useState(false)
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
   
   const [filters, setFilters] = useState<ProductFilters>({
@@ -30,7 +33,7 @@ export default function InventoryPage() {
     sortOrder: "desc"
   })
   const [searchInput, setSearchInput] = useState("")
-  const searchTimeoutRef = useRef<NodeJS.Timeout>()
+  const searchTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   
   const { data: productsData, isLoading, error } = useProducts(filters)
   const deleteProductMutation = useDeleteProduct()
@@ -77,8 +80,14 @@ export default function InventoryPage() {
       toast.success("Product deleted successfully!")
       setDeleteModalOpen(false)
       setSelectedProduct(null)
-    } catch (error: any) {
-      toast.error(error.response?.data?.message || "Failed to delete product")
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error && 'response' in error && 
+        typeof error.response === 'object' && error.response !== null &&
+        'data' in error.response && typeof error.response.data === 'object' &&
+        error.response.data !== null && 'message' in error.response.data
+        ? String(error.response.data.message)
+        : "Failed to delete product"
+      toast.error(errorMessage)
     }
   }
 
@@ -156,7 +165,7 @@ export default function InventoryPage() {
                 <Plus className="w-4 h-4" />
                 Add product
               </Button>
-              <Button variant="outline" className="rounded-full">
+              <Button variant="outline" className="rounded-full" onClick={() => setExportModalOpen(true)}>
                 <Download className="w-4 h-4" />
                 Export
               </Button>
@@ -349,6 +358,16 @@ export default function InventoryPage() {
           setDetailsModalOpen(false)
           setDeleteModalOpen(true)
         }}
+      />
+      <ExportModal
+        open={exportModalOpen}
+        onOpenChange={setExportModalOpen}
+        exportData={{
+          filename: `inventory-export-${new Date().toISOString().split('T')[0]}`,
+          data: products,
+          columns: inventoryColumns
+        }}
+        title="Export Inventory Data"
       />
     </div>
     </RequireSubscription>
