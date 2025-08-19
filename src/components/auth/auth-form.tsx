@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label"
 import { useAuth } from "@/contexts/auth-context"
 import { SignInData, SignUpData, signInSchema, signUpSchema } from "@/lib/validations"
 import { AlertCircle, Eye, EyeOff } from "lucide-react"
+import { useTranslations } from "next-intl"
 
 interface AuthFormProps {
   type: "signin" | "signup"
@@ -18,6 +19,7 @@ interface AuthFormProps {
 export function AuthForm({ type, onSubmit }: AuthFormProps) {
   const { signIn, signUp, isLoading, error, clearError } = useAuth()
   const [showPassword, setShowPassword] = useState(false)
+  const t = useTranslations('Auth')
 
   const schema = type === "signin" ? signInSchema : signUpSchema
   const isSignUp = type === "signup"
@@ -63,7 +65,7 @@ export function AuthForm({ type, onSubmit }: AuthFormProps) {
       {isSignUp && (
         <div>
           <Label htmlFor="name" className="text-sm font-medium text-gray-700">
-            Full Name
+            {t('Full Name')}
           </Label>
           <Input
             id="name"
@@ -80,7 +82,7 @@ export function AuthForm({ type, onSubmit }: AuthFormProps) {
 
       <div>
         <Label htmlFor="email" className="text-sm font-medium text-gray-700">
-          Email
+          {t('Email')}
         </Label>
         <Input
           id="email"
@@ -96,7 +98,7 @@ export function AuthForm({ type, onSubmit }: AuthFormProps) {
 
       <div>
         <Label htmlFor="password" className="text-sm font-medium text-gray-700">
-          Password
+          {t('Password')}
         </Label>
         <div className="relative mt-1">
           <Input
@@ -131,10 +133,10 @@ export function AuthForm({ type, onSubmit }: AuthFormProps) {
         {isLoading || isSubmitting ? (
           <div className="flex items-center gap-2">
             <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-            {isSignUp ? "Creating account..." : "Signing in..."}
+            {isSignUp ? t('Creating account') : t('Signing in')}
           </div>
         ) : (
-          isSignUp ? "Create Account" : "Sign In"
+          isSignUp ? t('Create Account') : t('Sign in')
         )}
       </Button>
     </form>

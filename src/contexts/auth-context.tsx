@@ -63,7 +63,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setError(null)
     },
     onError: (error: Error & { response?: { message?: string; email?: string } }) => {
-      const errorMessage = error.response?.message || error.message || 'Sign in failed'
+      const errorMessage = error.response?.data?.message || error.message || 'Sign in failed'
+      console.log("errorMessage", error)
       
       // Check if the error is related to email verification
       if (errorMessage === 'Please verify your email before logging in') {
