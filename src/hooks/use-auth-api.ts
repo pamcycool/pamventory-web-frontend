@@ -8,7 +8,7 @@ import { authApi } from '@/lib/api'
 export function useForgotPassword() {
   return useMutation({
     mutationFn: authApi.forgotPassword,
-    onError: (error: any) => {
+    onError: (error: unknown) => {
       console.error('Forgot password error:', error)
     },
   })
@@ -18,7 +18,7 @@ export function useForgotPassword() {
 export function useResetPassword() {
   return useMutation({
     mutationFn: authApi.resetPassword,
-    onError: (error: any) => {
+    onError: (error: unknown) => {
       console.error('Reset password error:', error)
     },
   })
@@ -28,7 +28,7 @@ export function useResetPassword() {
 export function useVerifyEmail() {
   return useMutation({
     mutationFn: authApi.verifyEmail,
-    onError: (error: any) => {
+    onError: (error: unknown) => {
       console.error('Email verification error:', error)
     },
   })
@@ -38,7 +38,7 @@ export function useVerifyEmail() {
 export function useResendVerificationOTP() {
   return useMutation({
     mutationFn: authApi.resendVerificationOTP,
-    onError: (error: any) => {
+    onError: (error: unknown) => {
       console.error('Resend OTP error:', error)
     },
   })

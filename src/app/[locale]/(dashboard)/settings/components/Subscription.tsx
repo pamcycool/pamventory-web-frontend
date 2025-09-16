@@ -51,7 +51,7 @@ const Subscription = () => {
       
       // Redirect to Paystack payment page
       window.location.href = response.data.authorizationUrl;
-    } catch (error: SubscriptionError) {
+    } catch (error: any) {
       toast.error(error.response?.data?.message || 'Failed to initialize subscription');
     }
   };

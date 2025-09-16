@@ -77,8 +77,11 @@ export function EditProductModal({ open, onOpenChange, product }: EditProductMod
             
             toast.success("Product updated successfully!")
             handleClose()
-        } catch (error: any) {
-            toast.error(error.response?.data?.message || "Failed to update product")
+        } catch (error: unknown) {
+            const errorMessage = error && typeof error === 'object' && 'response' in error 
+                ? (error as { response?: { data?: { message?: string } } }).response?.data?.message 
+                : "Failed to update product";
+            toast.error(errorMessage);
         }
     }
 

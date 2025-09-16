@@ -13,11 +13,14 @@ import {
 } from "@/components/ui/sidebar"
 import { cn } from "@/lib/utils"
 import { useAuth } from "@/contexts/auth-context"
+import { useStore } from "@/contexts/store-context"
+import { StoreSwitcher } from "@/components/ui/store-switcher"
 import { useTranslations } from "next-intl"
 
 export function AppSidebar() {
   const pathname = usePathname()
   const { signOut } = useAuth()
+  const { activeStore } = useStore()
   const t = useTranslations('Dashboard')
 
   const menuItems = [
@@ -27,6 +30,7 @@ export function AppSidebar() {
     { title: t('Sales'), url: "/sales", icon: ShoppingCart },
     { title: t('Report'), url: "/report", icon: FileText },
     { title: t('Credit book'), url: "/credit-book", icon: CreditCard },
+    { title: 'Stores', url: "/stores", icon: Store },
   ]
 
   const bottomMenuItems = [
@@ -35,13 +39,16 @@ export function AppSidebar() {
 
   return (
     <Sidebar className="w-64 bg-[#fcfcfc] border-none">
-      <SidebarHeader className="p-4">
+      <SidebarHeader className="p-4 space-y-4">
         <div className="flex items-center gap-2 bg-[#1B7339] text-white px-4 py-3 rounded-lg">
           <div className="w-8 h-8 border border-white rounded-full flex items-center justify-center">
             <Store className="w-4 h-4 text-white" />
           </div>
           <span className="font-semibold">Pamventory</span>
         </div>
+        
+        {/* Store Switcher */}
+        {activeStore && <StoreSwitcher />}
       </SidebarHeader>
 
       <SidebarContent className="px-2 mt-5">

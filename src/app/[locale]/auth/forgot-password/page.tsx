@@ -98,7 +98,7 @@ const ForgotPasswordPage = () => {
                 {forgotPasswordMutation.error && (
                     <div className="flex items-center gap-2 p-3 text-sm text-red-600 bg-red-50 border border-red-200 rounded-md mb-6">
                         <AlertCircle className="h-4 w-4 flex-shrink-0" />
-                        <span>{(forgotPasswordMutation.error as any)?.response?.message || forgotPasswordMutation.error.message}</span>
+                        <span>{(forgotPasswordMutation.error as { response?: { message?: string } })?.response?.message || forgotPasswordMutation.error.message}</span>
                     </div>
                 )}
 

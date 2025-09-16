@@ -94,7 +94,7 @@ const ResetPasswordPage = () => {
                 {resetPasswordMutation.error && (
                     <div className="flex items-center gap-2 p-3 text-sm text-red-600 bg-red-50 border border-red-200 rounded-md mb-6">
                         <AlertCircle className="h-4 w-4 flex-shrink-0" />
-                        <span>{(resetPasswordMutation.error as any)?.response?.message || resetPasswordMutation.error.message}</span>
+                        <span>{(resetPasswordMutation.error as { response?: { message?: string } })?.response?.message || resetPasswordMutation.error.message}</span>
                     </div>
                 )}
 

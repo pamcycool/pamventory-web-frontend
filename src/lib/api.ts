@@ -1,10 +1,9 @@
 import axios from 'axios';
 import { toast } from 'sonner';
-import { SignInData, SignUpData, AuthResponse } from './validations';
+import { SignInData, SignUpData, AuthResponse, CreateStoreData, UpdateStoreData, StoreResponse, StoresResponse } from './validations';
 
 export const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5002',
-  withCredentials: true,
+  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001',
 });
 
 // Add a request interceptor to include auth token
@@ -86,6 +85,44 @@ export const authApi = {
 
   resendVerificationOTP: async (data: { email: string }): Promise<AuthResponse> => {
     const response = await api.post('/api/auth/resend-verification-otp', data);
+    return response.data;
+  },
+};
+
+// Store API methods
+export const storeApi = {
+  createStore: async (data: CreateStoreData): Promise<StoreResponse> => {
+    const response = await api.post('/api/stores', data);
+    return response.data;
+  },
+
+  getUserStores: async (): Promise<StoresResponse> => {
+    const response = await api.get('/api/stores');
+    return response.data;
+  },
+
+  getActiveStore: async (): Promise<StoreResponse> => {
+    const response = await api.get('/api/stores/active');
+    return response.data;
+  },
+
+  getStore: async (storeId: string): Promise<StoreResponse> => {
+    const response = await api.get(`/api/stores/${storeId}`);
+    return response.data;
+  },
+
+  updateStore: async (storeId: string, data: UpdateStoreData): Promise<StoreResponse> => {
+    const response = await api.put(`/api/stores/${storeId}`, data);
+    return response.data;
+  },
+
+  deleteStore: async (storeId: string): Promise<{ success: boolean; message: string }> => {
+    const response = await api.delete(`/api/stores/${storeId}`);
+    return response.data;
+  },
+
+  setActiveStore: async (storeId: string): Promise<{ success: boolean; message: string; data: { activeStoreId: string } }> => {
+    const response = await api.put('/api/stores/set-active', { storeId });
     return response.data;
   },
 };

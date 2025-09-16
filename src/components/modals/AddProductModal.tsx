@@ -52,8 +52,11 @@ export function AddProductModal({ open, onOpenChange, onSubmit }: AddProductModa
             setPhotoFile(null)
             onOpenChange(false)
             onSubmit?.(productData)
-        } catch (error: any) {
-            toast.error(error.response?.data?.message || "Failed to add product")
+        } catch (error: unknown) {
+            const errorMessage = error && typeof error === 'object' && 'response' in error 
+                ? (error as { response?: { data?: { message?: string } } }).response?.data?.message 
+                : "Failed to add product";
+            toast.error(errorMessage);
         }
     }
 

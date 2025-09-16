@@ -117,7 +117,12 @@
     "Resend verification": "Resend verification",
     "Resending": "Resending...",
     "Check your email": "Check your email",
-    "Email sent description": "We've sent you an email with a link to verify your account."
+    "Email sent description": "We've sent you an email with a link to verify your account.",
+    "Email": "Email",
+    "Password": "Password",
+    "Full Name": "Full Name",
+    "Create Account": "Create Account",
+    "Creating account":  "Creating account"
   },
   "Dashboard": {
     "Home": "Home",
@@ -222,7 +227,6 @@
     "Profile": "Profile",
     "Account Settings": "Account Settings",
     "Personal Information": "Personal Information",
-    "Full Name": "Full Name",
     "Email": "Email",
     "Phone": "Phone",
     "Save Changes": "Save Changes",

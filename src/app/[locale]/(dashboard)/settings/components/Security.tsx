@@ -50,8 +50,11 @@ const Security = () => {
         newPassword: '',
         confirmPassword: ''
       });
-    } catch (error: any) {
-      toast.error(error.response?.data?.message || 'Failed to change password');
+    } catch (error: unknown) {
+      const errorMessage = error && typeof error === 'object' && 'response' in error 
+        ? (error as { response?: { data?: { message?: string } } }).response?.data?.message 
+        : 'Failed to change password';
+      toast.error(errorMessage);
     }
   };
 

@@ -52,7 +52,7 @@ export default function HomePage() {
     }, {})
     
     // Find the product with highest total quantity sold
-    const topProduct = Object.entries(productSales).reduce(
+    const topProduct = Object.entries(productSales as Record<string, number>).reduce(
       (max, [productName, quantity]) => 
         quantity > max.salesCount ? { productName, salesCount: quantity } : max,
       { productName: "None", salesCount: 0 }

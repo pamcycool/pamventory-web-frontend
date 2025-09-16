@@ -30,6 +30,24 @@ export const verifyEmailSchema = z.object({
   otp: z.string().min(6, "OTP must be 6 digits").max(6, "OTP must be 6 digits"),
 })
 
+// Store schemas (defined first to avoid circular dependency)
+export const storeSchema = z.object({
+  _id: z.string(),
+  name: z.string().min(1, "Store name is required"),
+  description: z.string().optional(),
+  address: z.string().optional(),
+  phone: z.string().optional(),
+  userId: z.string(),
+  isActive: z.boolean(),
+  settings: z.object({
+    currency: z.string().default("NGN"),
+    timezone: z.string().default("Africa/Lagos"),
+    businessHours: z.string().default("9:00 AM - 6:00 PM"),
+  }).optional(),
+  createdAt: z.string(),
+  updatedAt: z.string(),
+})
+
 // User type definitions
 export const userSchema = z.object({
   id: z.string(),
@@ -39,6 +57,9 @@ export const userSchema = z.object({
   role: z.string().optional(),
   lastLogin: z.string().optional(),
   createdAt: z.string().optional(),
+  activeStoreId: storeSchema.optional(),
+  stores: z.array(storeSchema).optional(),
+  phone: z.string().optional(),
 })
 
 // API response types
@@ -53,6 +74,34 @@ export const errorResponseSchema = z.object({
   error: z.string().optional(),
 })
 
+
+
+export const createStoreSchema = z.object({
+  name: z.string().min(1, "Store name is required"),
+  description: z.string().optional(),
+  address: z.string().optional(),
+  phone: z.string().optional(),
+  settings: z.object({
+    currency: z.string().optional(),
+    timezone: z.string().optional(),
+    businessHours: z.string().optional(),
+  }).optional(),
+})
+
+export const updateStoreSchema = createStoreSchema.partial()
+
+// Store response schemas
+export const storeResponseSchema = z.object({
+  success: z.boolean(),
+  message: z.string().optional(),
+  data: storeSchema,
+})
+
+export const storesResponseSchema = z.object({
+  success: z.boolean(),
+  data: z.array(storeSchema),
+})
+
 // Type exports
 export type SignInData = z.infer<typeof signInSchema>
 export type SignUpData = z.infer<typeof signUpSchema>
@@ -62,3 +111,8 @@ export type VerifyEmailData = z.infer<typeof verifyEmailSchema>
 export type User = z.infer<typeof userSchema>
 export type AuthResponse = z.infer<typeof authResponseSchema>
 export type ErrorResponse = z.infer<typeof errorResponseSchema>
+export type Store = z.infer<typeof storeSchema>
+export type CreateStoreData = z.infer<typeof createStoreSchema>
+export type UpdateStoreData = z.infer<typeof updateStoreSchema>
+export type StoreResponse = z.infer<typeof storeResponseSchema>
+export type StoresResponse = z.infer<typeof storesResponseSchema>

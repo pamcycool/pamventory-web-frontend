@@ -29,8 +29,11 @@ const Personal = () => {
         try {
             await updateProfile.mutateAsync(formData);
             toast.success('Profile updated successfully');
-        } catch (error: any) {
-            toast.error(error.response?.data?.message || 'Failed to update profile');
+        } catch (error: unknown) {
+            const errorMessage = error && typeof error === 'object' && 'response' in error 
+                ? (error as { response?: { data?: { message?: string } } }).response?.data?.message 
+                : 'Failed to update profile';
+            toast.error(errorMessage);
         }
     };
 

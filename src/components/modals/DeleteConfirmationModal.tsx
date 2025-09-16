@@ -41,7 +41,7 @@ export function DeleteConfirmationModal({
 
                     <div className="p-6">
                         <p className="text-sm text-gray-600 mb-6">
-                            Are you sure you want to delete <span className="font-medium text-gray-900">"{product.name}"</span>? 
+                            Are you sure you want to delete <span className="font-medium text-gray-900">&quot;{product.name}&quot;</span>? 
                             This will permanently remove the product from your inventory.
                         </p>
 
