@@ -3,7 +3,7 @@ import { toast } from 'sonner';
 import { SignInData, SignUpData, AuthResponse, CreateStoreData, UpdateStoreData, StoreResponse, StoresResponse } from './validations';
 
 export const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001',
+  baseURL: 'api.pamventory.com',
 });
 
 // Add a request interceptor to include auth token
