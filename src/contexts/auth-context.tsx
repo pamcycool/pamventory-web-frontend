@@ -63,7 +63,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setError(null)
     },
     onError: (error: Error & { response?: { message?: string; email?: string } }) => {
-      const errorMessage = error.response?.data?.message || error.message || 'Sign in failed'
+      const errorMessage = error.response?.data?.message || error.message || 'Sign in failed. Please try again.'
       console.log("errorMessage", error)
       
       // Check if the error is related to email verification
@@ -76,7 +76,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         }
         router.push('/auth/verify-email')
       } else {
-        setError(errorMessage)
+        setError("Sign in failed. Please try again.")
       }
     },
   })
@@ -91,7 +91,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setError(null)
     },
     onError: (error: Error & { response?: { message?: string } }) => {
-      setError(error.response?.message || error.message || 'Sign up failed')
+      setError(error.response?.message || error.message || 'Sign up failed. Please try again.')
     },
   })
 
@@ -107,7 +107,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setError(null)
     },
     onError: (error: Error & { response?: { message?: string } }) => {
-      setError(error.response?.message || error.message || 'Google sign in failed')
+      setError(error.response?.message || error.message || 'Google sign in failed. Please try again.')
     },
   })
 
@@ -123,7 +123,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setError(null)
     },
     onError: (error: Error & { response?: { message?: string } }) => {
-      setError(error.response?.message || error.message || 'Google sign up failed')
+      setError(error.response?.message || error.message || 'Google sign up failed. Please try again.')
     },
   })
 
@@ -176,7 +176,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     signInWithGoogle,
     signUpWithGoogle,
     signOut,
-    error: error || (queryError as Error & { response?: { message?: string } })?.response?.message || null,
+    error: error || (queryError as Error & { response?: { message?: string } })?.response?.message || "Sign in failed. Please try again.",
     clearError,
   }
 
