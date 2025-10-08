@@ -5,32 +5,26 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import {
   BarChart3,
-  Bell,
   CheckCircle,
   Globe,
   MessageSquare,
   Monitor,
   Shield,
   Smartphone,
-  TrendingUp,
-  Users,
   Package,
   FileText,
-  Zap,
   ArrowRight,
-  Star,
-  Sparkles,
-  Cpu,
-  Database,
+  Store,
+  Users,
+  CreditCard,
+  TrendingUp,
 } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import {useTranslations} from 'next-intl';
 import { LanguageSwitcher } from "@/components/ui/language-switcher"
 
 
 export default function Home() {
-  const t = useTranslations('Home');
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden relative">
       {/* Animated Background */}
@@ -54,7 +48,7 @@ export default function Home() {
       </div>
 
       {/* Header */}
-      <header className="relative z-50 border-b border-white/10 bg-black/50 backdrop-blur-xl sticky top-0">
+      <header className="z-50 border-b border-white/10 bg-black/50 backdrop-blur-xl sticky top-0">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <div className="relative">
@@ -70,23 +64,19 @@ export default function Home() {
           <nav className="hidden md:flex items-center space-x-8">
             <Link
               href="#features"
-              className="text-gray-300 hover:text-green-400 transition-all duration-300 hover:glow"
+              className="text-gray-300 hover:text-green-400 transition-all duration-300"
             >
-              {t('Features')}
+              Features
             </Link>
             <Link href="#platforms" className="text-gray-300 hover:text-green-400 transition-all duration-300">
-              {t('Platforms')}
-            </Link>
-            <Link href="#pricing" className="text-gray-300 hover:text-green-400 transition-all duration-300">
-              {t('Pricing')}
+              Platforms
             </Link>
             <LanguageSwitcher />
             <Link href="/auth/register">
               <Button className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-500 hover:to-green-600 border-0 shadow-lg shadow-green-500/25 hover:shadow-green-500/40 transition-all duration-300">
-                {t('Get Started')}
+                Get Started
               </Button>
             </Link>
-
           </nav>
         </div>
       </header>
@@ -95,59 +85,54 @@ export default function Home() {
       <section className="relative py-32 px-4">
         <div className="container mx-auto text-center max-w-7xl relative z-10">
           <Badge className="mb-8 bg-gradient-to-r from-green-500/20 to-green-600/20 text-green-300 border border-green-500/30 backdrop-blur-sm hover:shadow-lg hover:shadow-green-500/25 transition-all duration-300">
-            <Sparkles className="w-4 h-4 mr-2" />🚀 {t('Next-Gen Inventory for Nigerian Businesses')}
+            🚀 Modern Inventory Management for Nigerian Businesses
           </Badge>
 
           <h1 className="text-6xl md:text-8xl font-black mb-8 leading-tight">
-            <span className="bg-gradient-to-r from-green-400 to-green-300 bg-clip-text text-transparent animate-pulse">
-              {t('Inventory')}
+            <span className="bg-gradient-to-r from-green-400 to-green-300 bg-clip-text text-transparent">
+              Inventory
             </span>
             <br />
-            <span className="bg-gradient-to-r from-white to-green-100 bg-clip-text text-transparent">{t('Reimagined')}</span>
+            <span className="bg-gradient-to-r from-white to-green-100 bg-clip-text text-transparent">Management</span>
           </h1>
 
           <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed">
-            {t('heroDescription')}
+            Manage your inventory, track sales, handle customer credit, and grow your business with our comprehensive platform designed for Nigerian retailers.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
-            <Button
-              size="lg"
-              className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-500 hover:to-green-600 text-lg px-12 py-8 rounded-2xl shadow-2xl shadow-green-500/25 hover:shadow-green-500/40 transition-all duration-500 transform hover:scale-105 border-0"
-            >
-              <Zap className="mr-3 w-6 h-6" />
-              {t('Launch Your Future')}
-              <ArrowRight className="ml-3 w-6 h-6" />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="text-lg px-12 py-8 rounded-2xl bg-white/5 border border-white/20 text-white hover:bg-white/10 backdrop-blur-sm hover:shadow-lg hover:shadow-white/10 transition-all duration-300"
-            >
-              <Cpu className="mr-3 w-6 h-6" />
-              {t('Experience Demo')}
-            </Button>
+            <Link href="/auth/register">
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-500 hover:to-green-600 text-lg px-12 py-8 rounded-2xl shadow-2xl shadow-green-500/25 hover:shadow-green-500/40 transition-all duration-500 transform hover:scale-105 border-0"
+              >
+                Start Free Trial
+                <ArrowRight className="ml-3 w-6 h-6" />
+              </Button>
+            </Link>
+            <Link href="/auth/login">
+              <Button
+                size="lg"
+                variant="outline"
+                className="text-lg px-12 py-8 rounded-2xl bg-white/5 border border-white/20 text-white hover:bg-white/10 backdrop-blur-sm hover:shadow-lg hover:shadow-white/10 transition-all duration-300"
+              >
+                Sign In
+              </Button>
+            </Link>
           </div>
 
-          {/* Futuristic Hero Visual */}
+          {/* Dashboard Preview */}
           <div className="relative max-w-6xl mx-auto">
             <div className="relative bg-gradient-to-r from-green-500/10 to-green-600/10 rounded-3xl p-5 backdrop-blur-xl border border-white/10 shadow-2xl">
               <div className="absolute inset-0 bg-gradient-to-r from-green-500/5 to-green-600/5 rounded-3xl blur-xl"></div>
               <div className="relative">
                 <Image
                   src="/DASHBOARD.svg"
-                  alt="Futuristic Pamventory Dashboard"
+                  alt="Pamventory Dashboard"
                   width={1100}
                   height={500}
                   className="rounded-2xl shadow-2xl mx-auto"
                 />
-                {/* Floating UI Elements */}
-                <div className="absolute -top-4 -right-4 bg-gradient-to-r from-green-400 to-green-600 rounded-xl p-3 shadow-lg shadow-green-500/25 animate-bounce">
-                  <Database className="w-6 h-6 text-white" />
-                </div>
-                <div className="absolute -bottom-4 -left-4 bg-gradient-to-r from-green-500 to-green-700 rounded-xl p-3 shadow-lg shadow-green-500/25 animate-pulse">
-                  <BarChart3 className="w-6 h-6 text-white" />
-                </div>
               </div>
             </div>
           </div>
@@ -160,13 +145,13 @@ export default function Home() {
           <div className="text-center mb-20">
             <h2 className="text-5xl md:text-7xl font-black mb-8">
               <span className="bg-gradient-to-r from-green-400 to-green-300 bg-clip-text text-transparent">
-                {t('Quantum-Powered')}
+                Powerful Features
               </span>
               <br />
-              <span className="text-white">{t('Business Tools')}</span>
+              <span className="text-white">For Your Business</span>
             </h2>
             <p className="text-xl text-gray-300 max-w-4xl mx-auto">
-              {t('featuresDescription')}
+              Everything you need to manage your business efficiently
             </p>
           </div>
 
@@ -174,45 +159,39 @@ export default function Home() {
             {[
               {
                 icon: Package,
-                title: t('Neural Inventory'),
-                description: t('neuralInventoryDesc'),
+                title: "Inventory Management",
+                description: "Track your products, stock levels, and get low stock alerts to never run out",
                 gradient: "from-green-500 to-green-600",
-                glowColor: "green-500/25",
               },
               {
                 icon: BarChart3,
-                title: t('Holographic Analytics'),
-                description: t('holographicAnalyticsDesc'),
+                title: "Sales Tracking",
+                description: "Record and monitor all your sales transactions with detailed reports",
                 gradient: "from-green-600 to-green-700",
-                glowColor: "green-600/25",
               },
               {
-                icon: Globe,
-                title: t('Universal Translation'),
-                description: t('universalTranslationDesc'),
+                icon: Store,
+                title: "Multi-Store Management",
+                description: "Manage multiple store locations from a single dashboard",
                 gradient: "from-green-400 to-green-600",
-                glowColor: "green-400/25",
               },
               {
-                icon: Shield,
-                title: t('Quantum Security'),
-                description: t('quantumSecurityDesc'),
+                icon: CreditCard,
+                title: "Credit Book",
+                description: "Keep track of customer credit and outstanding payments easily",
                 gradient: "from-green-700 to-green-800",
-                glowColor: "green-700/25",
-              },
-              {
-                icon: Bell,
-                title: t('Predictive Alerts'),
-                description: t('predictiveAlertsDesc'),
-                gradient: "from-green-500 to-green-700",
-                glowColor: "green-500/25",
               },
               {
                 icon: FileText,
-                title: t('Quantum Reports'),
-                description: t('quantumReportsDesc'),
+                title: "Business Reports",
+                description: "Generate detailed reports to understand your business performance",
+                gradient: "from-green-500 to-green-700",
+              },
+              {
+                icon: Globe,
+                title: "Multi-Language Support",
+                description: "Available in English and Yoruba for better accessibility",
                 gradient: "from-green-600 to-green-800",
-                glowColor: "green-600/25",
               },
             ].map((feature, index) => (
               <Card
@@ -221,7 +200,7 @@ export default function Home() {
               >
                 <CardHeader className="relative">
                   <div
-                    className={`w-16 h-16 bg-gradient-to-r ${feature.gradient} rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-${feature.glowColor} group-hover:shadow-xl transition-all duration-300`}
+                    className={`w-16 h-16 bg-gradient-to-r ${feature.gradient} rounded-2xl flex items-center justify-center mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300`}
                   >
                     <feature.icon className="w-8 h-8 text-white" />
                   </div>
@@ -243,44 +222,42 @@ export default function Home() {
         <div className="container mx-auto max-w-7xl">
           <div className="text-center mb-20">
             <h2 className="text-5xl md:text-7xl font-black mb-8">
-              <span className="text-white">{t('Tri-Platform')}</span>
+              <span className="text-white">Available On</span>
               <br />
               <span className="bg-gradient-to-r from-green-400 to-green-300 bg-clip-text text-transparent">
-                {t('Ecosystem')}
+                Multiple Platforms
               </span>
             </h2>
             <p className="text-xl text-gray-300 max-w-4xl mx-auto">
-              {t('platformsDescription')}
+              Access your business from anywhere with our web, mobile, and WhatsApp platforms
             </p>
           </div>
 
           <div className="grid lg:grid-cols-3 gap-12">
             {/* Web Dashboard */}
-            <Card className="group bg-gradient-to-br from-green-500/10 to-green-600/10 border border-green-500/20 backdrop-blur-xl hover:from-green-500/20 hover:to-green-600/20 transition-all duration-500 hover:scale-105 rounded-3xl overflow-hidden shadow-2xl hover:shadow-green-500/25">
+            <Card className="group bg-gradient-to-br from-green-500/10 to-green-600/10 border border-green-500/20 backdrop-blur-xl hover:from-green-500/20 hover:to-green-600/20 transition-all duration-500 hover:scale-105 rounded-3xl overflow-hidden shadow-2xl">
               <CardHeader className="text-center pb-6 relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-green-600/5 rounded-3xl blur-xl"></div>
                 <div className="relative w-20 h-20 bg-gradient-to-r from-green-400 to-green-600 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl shadow-green-500/25 group-hover:shadow-green-500/40 transition-all duration-300">
                   <Monitor className="w-10 h-10 text-white" />
                 </div>
                 <CardTitle className="text-3xl font-bold text-white group-hover:text-green-300 transition-colors duration-300">
-                  Quantum Web
+                  Web Dashboard
                 </CardTitle>
                 <CardDescription className="text-gray-300 text-lg">
-                  Neural command center with holographic interface and real-time quantum processing
+                  Full-featured admin portal with comprehensive business management tools
                 </CardDescription>
               </CardHeader>
               <CardContent className="relative">
-
                 <ul className="space-y-4">
                   {[
-                      t('Quantum-encrypted admin portal'),
-                    t('Holographic inventory visualization'),
-                    t('AI-powered user management'),
-                    t('Instant quantum reports'),
+                    "Complete inventory management",
+                    "Sales and transaction tracking",
+                    "Multi-store administration",
+                    "Detailed business reports",
                   ].map((item, index) => (
                     <li key={index} className="flex items-center group/item">
-                      <CheckCircle className="w-6 h-6 text-green-400 mr-4 group-hover/item:text-green-300 transition-colors duration-200" />
-                      <span className="text-gray-300 group-hover/item:text-white transition-colors duration-200">
+                      <CheckCircle className="w-6 h-6 text-green-400 mr-4 flex-shrink-0" />
+                      <span className="text-gray-300">
                         {item}
                       </span>
                     </li>
@@ -290,31 +267,29 @@ export default function Home() {
             </Card>
 
             {/* Mobile App */}
-            <Card className="group bg-gradient-to-br from-green-600/10 to-green-700/10 border border-green-600/20 backdrop-blur-xl hover:from-green-600/20 hover:to-green-700/20 transition-all duration-500 hover:scale-105 rounded-3xl overflow-hidden shadow-2xl hover:shadow-green-600/25">
+            <Card className="group bg-gradient-to-br from-green-600/10 to-green-700/10 border border-green-600/20 backdrop-blur-xl hover:from-green-600/20 hover:to-green-700/20 transition-all duration-500 hover:scale-105 rounded-3xl overflow-hidden shadow-2xl">
               <CardHeader className="text-center pb-6 relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-green-600/5 to-green-700/5 rounded-3xl blur-xl"></div>
                 <div className="relative w-20 h-20 bg-gradient-to-r from-green-500 to-green-700 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl shadow-green-600/25 group-hover:shadow-green-600/40 transition-all duration-300">
                   <Smartphone className="w-10 h-10 text-white" />
                 </div>
                 <CardTitle className="text-3xl font-bold text-white group-hover:text-green-300 transition-colors duration-300">
-                  {t('Neural Mobile')}
+                  Mobile App
                 </CardTitle>
                 <CardDescription className="text-gray-300 text-lg">
-                  {t('neuralMobileDesc')}
+                  Manage your business on the go with our mobile application
                 </CardDescription>
               </CardHeader>
               <CardContent className="relative">
-
                 <ul className="space-y-4">
                   {[
-                    t('AR-enhanced inventory scanning'),
-                    t('Quantum-speed notifications'),
-                    t('Biometric authentication'),
-                    t('Real-time neural sync'),
+                    "Quick inventory updates",
+                    "Record sales anywhere",
+                    "Real-time notifications",
+                    "Offline mode support",
                   ].map((item, index) => (
                     <li key={index} className="flex items-center group/item">
-                      <CheckCircle className="w-6 h-6 text-green-400 mr-4 group-hover/item:text-green-300 transition-colors duration-200" />
-                      <span className="text-gray-300 group-hover/item:text-white transition-colors duration-200">
+                      <CheckCircle className="w-6 h-6 text-green-400 mr-4 flex-shrink-0" />
+                      <span className="text-gray-300">
                         {item}
                       </span>
                     </li>
@@ -324,31 +299,29 @@ export default function Home() {
             </Card>
 
             {/* WhatsApp Bot */}
-            <Card className="group bg-gradient-to-br from-green-400/10 to-green-600/10 border border-green-400/20 backdrop-blur-xl hover:from-green-400/20 hover:to-green-600/20 transition-all duration-500 hover:scale-105 rounded-3xl overflow-hidden shadow-2xl hover:shadow-green-400/25">
+            <Card className="group bg-gradient-to-br from-green-400/10 to-green-600/10 border border-green-400/20 backdrop-blur-xl hover:from-green-400/20 hover:to-green-600/20 transition-all duration-500 hover:scale-105 rounded-3xl overflow-hidden shadow-2xl">
               <CardHeader className="text-center pb-6 relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-green-400/5 to-green-600/5 rounded-3xl blur-xl"></div>
                 <div className="relative w-20 h-20 bg-gradient-to-r from-green-400 to-green-600 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl shadow-green-400/25 group-hover:shadow-green-400/40 transition-all duration-300">
                   <MessageSquare className="w-10 h-10 text-white" />
                 </div>
                 <CardTitle className="text-3xl font-bold text-white group-hover:text-green-300 transition-colors duration-300">
-                  {t('AI PamBot')}
+                  WhatsApp Bot
                 </CardTitle>
                 <CardDescription className="text-gray-300 text-lg">
-                  {t('aiPamBotDesc')}
+                  Manage your inventory through WhatsApp for easy access
                 </CardDescription>
               </CardHeader>
               <CardContent className="relative">
-
                 <ul className="space-y-4">
                   {[
-                    t('Quantum AI conversation engine'),
-                    t('Predictive inventory management'),
-                    t('Neural pattern recognition'),
-                    t('Automated business insights'),
+                    "Check inventory via WhatsApp",
+                    "Record sales through chat",
+                    "Get instant notifications",
+                    "No app installation needed",
                   ].map((item, index) => (
                     <li key={index} className="flex items-center group/item">
-                      <CheckCircle className="w-6 h-6 text-green-400 mr-4 group-hover/item:text-green-300 transition-colors duration-200" />
-                      <span className="text-gray-300 group-hover/item:text-white transition-colors duration-200">
+                      <CheckCircle className="w-6 h-6 text-green-400 mr-4 flex-shrink-0" />
+                      <span className="text-gray-300">
                         {item}
                       </span>
                     </li>
@@ -366,39 +339,39 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
               <h2 className="text-5xl md:text-6xl font-black mb-8">
-                <span className="text-white">{t('Engineered for')}</span>
+                <span className="text-white">Built For</span>
                 <br />
                 <span className="bg-gradient-to-r from-green-400 to-green-300 bg-clip-text text-transparent">
-                  {t('Nigerian Innovation')}
+                  Nigerian Businesses
                 </span>
               </h2>
               <p className="text-xl text-gray-300 mb-12 leading-relaxed">
-                {t('benefitsDescription')}
+                We understand the unique needs of Nigerian retailers and have built our platform to address them.
               </p>
               <div className="space-y-8">
                 {[
                   {
-                    icon: Zap,
-                    title: t('Quantum Deployment'),
-                    description: t('quantumDeploymentDesc'),
+                    icon: Users,
+                    title: "Easy to Use",
+                    description: "Intuitive interface designed for business owners with minimal technical knowledge",
                     gradient: "from-green-400 to-green-600",
                   },
                   {
-                    icon: Users,
-                      title: t('Cultural Intelligence'),
-                    description: t('culturalIntelligenceDesc'),
+                    icon: Shield,
+                    title: "Secure & Reliable",
+                    description: "Your business data is protected with enterprise-grade security",
                     gradient: "from-green-500 to-green-700",
                   },
                   {
                     icon: TrendingUp,
-                    title: t('Predictive Growth'),
-                    description: t('predictiveGrowthDesc'),
+                    title: "Grow Your Business",
+                    description: "Make informed decisions with real-time insights and detailed analytics",
                     gradient: "from-green-600 to-green-800",
                   },
                 ].map((benefit, index) => (
                   <div key={index} className="flex items-start group">
                     <div
-                      className={`w-12 h-12 bg-gradient-to-r ${benefit.gradient} rounded-2xl flex items-center justify-center mr-6 mt-2 shadow-lg group-hover:shadow-xl transition-all duration-300`}
+                      className={`w-12 h-12 bg-gradient-to-r ${benefit.gradient} rounded-2xl flex items-center justify-center mr-6 mt-2 shadow-lg group-hover:shadow-xl transition-all duration-300 flex-shrink-0`}
                     >
                       <benefit.icon className="w-6 h-6 text-white" />
                     </div>
@@ -416,87 +389,13 @@ export default function Home() {
               <div className="bg-gradient-to-br from-green-500/10 to-green-600/10 rounded-3xl p-8 backdrop-blur-xl border border-white/10 shadow-2xl">
                 <Image
                   src="/CREDIT BOOK.svg"
-                  alt="Future Nigerian Business"
+                  alt="Credit Book Feature"
                   width={600}
                   height={500}
                   className="rounded-2xl mx-auto shadow-lg"
                 />
-                {/* Floating Elements */}
-                <div className="absolute -top-6 -right-6 bg-gradient-to-r from-green-400 to-green-600 rounded-2xl p-4 shadow-2xl shadow-green-500/25 animate-float">
-                  <Sparkles className="w-8 h-8 text-white" />
-                </div>
-                <div
-                  className="absolute -bottom-6 -left-6 bg-gradient-to-r from-green-500 to-green-700 rounded-2xl p-4 shadow-2xl shadow-green-600/25 animate-float"
-                  style={{ animationDelay: "1s" }}
-                >
-                  <TrendingUp className="w-8 h-8 text-white" />
-                </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="relative py-32 px-4">
-        <div className="container mx-auto max-w-7xl">
-          <div className="text-center mb-20">
-            <h2 className="text-5xl md:text-6xl font-black mb-8">
-              <span className="bg-gradient-to-r from-green-400 to-green-300 bg-clip-text text-transparent">
-                {t('Quantum Testimonials')}
-              </span>
-            </h2>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                name: t('Adaora Okafor'),
-                role: t('Fashion Retailer, Lagos'),
-                content:
-                  t('testimonial1'),
-                gradient: "from-green-500/10 to-green-600/10",
-                borderGradient: "from-green-500/30 to-green-600/30",
-              },
-              {
-                name: t('Musa Ibrahim'),
-                role: t('Electronics Store, Kano'),
-                content:
-                  t('testimonial2'),
-                gradient: "from-green-600/10 to-green-700/10",
-                borderGradient: "from-green-600/30 to-green-700/30",
-              },
-              {
-                name: t('Olumide Adebayo'),
-                role: t('Pharmacy, Ibadan'),
-                content:
-                  t('testimonial3'),
-                gradient: "from-green-400/10 to-green-600/10",
-                borderGradient: "from-green-400/30 to-green-600/30",
-              },
-            ].map((testimonial, index) => (
-              <Card
-                key={index}
-                className={`bg-gradient-to-br ${testimonial.gradient} border border-green-500/20 backdrop-blur-xl hover:scale-105 transition-all duration-500 rounded-2xl overflow-hidden shadow-2xl`}
-              >
-                <CardContent className="p-8">
-                  <div className="flex mb-6">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-6 h-6 text-yellow-400 fill-current" />
-                    ))}
-                  </div>
-                  <p className="text-gray-300 mb-8 text-lg leading-relaxed">&quot;{testimonial.content}&quot;</p>
-                  <div className="flex items-center">
-                    <div className="w-12 h-12 bg-gradient-to-r from-green-400 to-green-600 rounded-full flex items-center justify-center mr-4">
-                      <span className="text-white font-bold text-lg">{testimonial.name[0]}</span>
-                    </div>
-                    <div>
-                      <p className="font-bold text-white text-lg">{testimonial.name}</p>
-                      <p className="text-gray-400">{testimonial.role}</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
           </div>
         </div>
       </section>
@@ -508,35 +407,24 @@ export default function Home() {
             <div className="absolute inset-0 bg-gradient-to-r from-green-500/5 to-green-600/5 rounded-3xl blur-2xl"></div>
             <div className="relative z-10">
               <h2 className="text-5xl md:text-6xl font-black text-white mb-8">
-                {t('Ready to Enter the')}
-                <br />
-                <span className="bg-gradient-to-r from-green-400 to-green-300 bg-clip-text text-transparent">
-                  {t('Business Future?')}
-                </span>
+                Ready To Get Started?
               </h2>
               <p className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
-                {t('ctaDescription')}
+                Join hundreds of Nigerian businesses already using Pamventory to streamline their operations and grow their revenue.
               </p>
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                <Button
-                  size="lg"
-                  className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-500 hover:to-green-600 text-xl px-16 py-10 rounded-2xl shadow-2xl shadow-green-500/25 hover:shadow-green-500/40 transition-all duration-500 transform hover:scale-105 border-0"
-                >
-                  <Zap className="mr-4 w-7 h-7" />
-                  {t('Activate Quantum Mode')}
-                  <ArrowRight className="ml-4 w-7 h-7" />
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-2 border-white/30 text-white hover:bg-white/10 text-xl px-16 py-10 rounded-2xl bg-transparent backdrop-blur-sm hover:shadow-lg hover:shadow-white/10 transition-all duration-300"
-                >
-                  <Cpu className="mr-4 w-7 h-7" />
-                  {t('Neural Demo')}
-                </Button>
+                <Link href="/auth/register">
+                  <Button
+                    size="lg"
+                    className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-500 hover:to-green-600 text-xl px-16 py-10 rounded-2xl shadow-2xl shadow-green-500/25 hover:shadow-green-500/40 transition-all duration-500 transform hover:scale-105 border-0"
+                  >
+                    Create Free Account
+                    <ArrowRight className="ml-4 w-7 h-7" />
+                  </Button>
+                </Link>
               </div>
               <p className="text-green-300 mt-8 text-lg">
-                ⚡ {t('Quantum-encrypted')} • 🚀 {t('14-day neural trial')} • 🔮 {t('Cancel anytime')}
+                ✅ Free 14-day trial • 💳 No credit card required • 🔒 Secure & private
               </p>
             </div>
           </div>
@@ -560,21 +448,21 @@ export default function Home() {
                 </span>
               </div>
               <p className="text-gray-400 leading-relaxed">
-                {t('footerDescription')}
+                Modern inventory management for Nigerian retailers.
               </p>
             </div>
             {[
               {
-                title: t('Quantum Features'),
-                links: [t('Neural Analytics'), t('AI Predictions'), t('Quantum Sync'), t('Holographic UI')],
+                title: "Product",
+                links: ["Features", "Pricing", "Mobile App", "WhatsApp Bot"],
               },
               {
-                title: t('Neural Support'),
-                links: [t('AI Help Center'), t('Quantum Docs'), t('Neural Training'), t('24/7 Bot Support')],
+                title: "Company",
+                links: ["About Us", "Contact", "Blog", "Careers"],
               },
               {
-                title: t('Future Company'),
-                links: [t('About Quantum'), t('Tech Blog'), t('Neural Careers'), t('Privacy Shield')],
+                title: "Support",
+                links: ["Help Center", "Documentation", "Community", "Status"],
               },
             ].map((section, index) => (
               <div key={index}>
@@ -584,7 +472,7 @@ export default function Home() {
                     <li key={linkIndex}>
                       <Link
                         href="#"
-                        className="text-gray-400 hover:text-green-400 transition-colors duration-300 hover:glow"
+                        className="text-gray-400 hover:text-green-400 transition-colors duration-300"
                       >
                         {link}
                       </Link>
@@ -594,11 +482,20 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <div className="border-t border-white/10 mt-16 pt-8 text-center">
-            <p className="text-gray-400">
-              &copy; 2024 Pamventory Quantum Systems. {t('All rights reserved')}
-              <span className="text-green-400"> {t('Engineered with ⚡ for Nigerian Innovation')}</span>
-            </p>
+          <div className="border-t border-white/10 mt-16 pt-8">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+              <p className="text-gray-400">
+                &copy; 2024 Pamventory. All rights reserved.
+              </p>
+              <div className="flex gap-6">
+                <Link href="/privacy-policy" className="text-gray-400 hover:text-green-400 transition-colors duration-300">
+                  Privacy Policy
+                </Link>
+                <Link href="/terms-of-service" className="text-gray-400 hover:text-green-400 transition-colors duration-300">
+                  Terms of Service
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </footer>
@@ -610,9 +507,6 @@ export default function Home() {
         }
         .animate-float {
           animation: float 3s ease-in-out infinite;
-        }
-        .glow {
-          text-shadow: 0 0 10px currentColor;
         }
       `}</style>
     </div>
