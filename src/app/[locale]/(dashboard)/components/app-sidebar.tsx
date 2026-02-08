@@ -1,6 +1,6 @@
 "use client"
 
-import { Home, BarChart3, Package, ShoppingCart, FileText, CreditCard, Settings, LogOut, Store } from "lucide-react"
+import { Home, BarChart3, Package, ShoppingCart, FileText, CreditCard, Settings, LogOut, Store, Shield } from "lucide-react"
 import { usePathname, Link } from "@/i18n/navigation"
 import {
   Sidebar,
@@ -19,7 +19,7 @@ import { useTranslations } from "next-intl"
 
 export function AppSidebar() {
   const pathname = usePathname()
-  const { signOut } = useAuth()
+  const { signOut, user } = useAuth()
   const { activeStore } = useStore()
   const t = useTranslations('Dashboard')
 
@@ -76,6 +76,26 @@ export function AppSidebar() {
 
       <SidebarFooter className="px-2 pb-4">
         <SidebarMenu>
+          {/* Admin Link - Only show for admin users */}
+          {user?.role === 'Admin' && (
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <Link
+                  href="/admin"
+                  className={cn(
+                    "flex items-center gap-3 px-3 py-6 rounded-lg",
+                    pathname === "/admin"
+                      ? "bg-purple-100 text-purple-700"
+                      : "text-gray-700 hover:bg-gray-100"
+                  )}
+                >
+                  <Shield className="w-5 h-5" />
+                  <span>Admin</span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          )}
+
           {bottomMenuItems.map((item) => (
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton asChild>
@@ -89,7 +109,7 @@ export function AppSidebar() {
               </SidebarMenuButton>
             </SidebarMenuItem>
           ))}
-          
+
           {/* Logout Button */}
           <SidebarMenuItem>
             <SidebarMenuButton asChild>
